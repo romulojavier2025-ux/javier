@@ -1,0 +1,33 @@
+name: flashnet_app
+description: "Aplicación móvil para la papelería FlashNet"
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.3.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # HTTP para conexión con PHP API
+  http: ^1.2.0
+
+  # Validación de correos
+  email_validator: ^2.1.17
+
+  # Manejo de estados (opcional, para después)
+  flutter_riverpod: ^2.5.1
+
+  # Iconos iOS
+  cupertino_icons: ^1.0.8
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
