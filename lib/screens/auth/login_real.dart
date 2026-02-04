@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'login_page.dart';
-import '../home_page.dart';
 
 class LoginRealPage extends StatefulWidget {
   const LoginRealPage({super.key});
@@ -25,19 +23,11 @@ class _LoginRealPageState extends State<LoginRealPage> {
       return;
     }
 
-    // SIMULACIÓN DE ROLES
-    String tipo;
+    // 👇 Aquí luego conectamos con tu API PHP
 
-    if (correoCtrl.text == "admin@flash.com") {
-      tipo = "admin";
-    } else {
-      tipo = "usuario";
-    }
-
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => HomePage(tipo: tipo),
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text("Bienvenido: ${correoCtrl.text}"),
       ),
     );
   }
@@ -45,14 +35,14 @@ class _LoginRealPageState extends State<LoginRealPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: const Text("Login")),
+      appBar: AppBar(title: const Text("Login")),
 
-        body: Padding(
-            padding: const EdgeInsets.all(20),
-            child: Column(
-              children: [
+      body: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          children: [
 
-              TextField(
+            TextField(
               controller: correoCtrl,
               decoration: const InputDecoration(labelText: "Correo"),
               keyboardType: TextInputType.emailAddress,
@@ -69,11 +59,11 @@ class _LoginRealPageState extends State<LoginRealPage> {
             ElevatedButton(
               onPressed: ingresar,
               child: const Text("INGRESAR"),
-            ),
+            )
 
-            TextButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const RegisterPage(),
+          ],
+        ),
+      ),
+    );
+  }
+}

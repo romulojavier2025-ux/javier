@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'login_real.dart';   // pantalla a donde irá después
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -12,6 +13,37 @@ class _RegisterPageState extends State<RegisterPage> {
   final nombreCtrl = TextEditingController();
   final correoCtrl = TextEditingController();
   final claveCtrl = TextEditingController();
+
+  void registrar() {
+
+    if (nombreCtrl.text.isEmpty ||
+        correoCtrl.text.isEmpty ||
+        claveCtrl.text.isEmpty) {
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text("Todos los campos son obligatorios"),
+        ),
+      );
+      return;
+    }
+
+    // Aquí luego conectaremos con tu API
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text("Usuario registrado con éxito"),
+      ),
+    );
+
+    // Ir a login
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const LoginRealPage(),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +63,7 @@ class _RegisterPageState extends State<RegisterPage> {
             TextField(
               controller: correoCtrl,
               decoration: const InputDecoration(labelText: "Correo"),
+              keyboardType: TextInputType.emailAddress,
             ),
 
             TextField(
@@ -42,9 +75,7 @@ class _RegisterPageState extends State<RegisterPage> {
             const SizedBox(height: 20),
 
             ElevatedButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
+              onPressed: registrar,
               child: const Text("REGISTRAR"),
             )
 
