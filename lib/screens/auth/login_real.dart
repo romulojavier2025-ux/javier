@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+// ===== IMPORTS CORRECTOS SEGÚN TU CÓDIGO =====
+import '../dashboard/admin_home.dart';
+import '../dashboard/user_home.dart';
+
 class LoginRealPage extends StatefulWidget {
   const LoginRealPage({super.key});
 
@@ -23,13 +27,35 @@ class _LoginRealPageState extends State<LoginRealPage> {
       return;
     }
 
-    // 👇 Aquí luego conectamos con tu API PHP
+    bool esAdmin =
+        correoCtrl.text == "admin@flash.com" ||
+            correoCtrl.text == "romulo@test.com";
 
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text("Bienvenido: ${correoCtrl.text}"),
       ),
     );
+
+    Future.delayed(const Duration(seconds: 1), () {
+
+      if (esAdmin) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => AdminHomePage(),   // 👈 AQUÍ ESTÁ LA CORRECCIÓN
+          ),
+        );
+      } else {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => UserHomePage(),    // 👈 seguro así se llama
+          ),
+        );
+      }
+
+    });
   }
 
   @override
@@ -45,7 +71,6 @@ class _LoginRealPageState extends State<LoginRealPage> {
             TextField(
               controller: correoCtrl,
               decoration: const InputDecoration(labelText: "Correo"),
-              keyboardType: TextInputType.emailAddress,
             ),
 
             TextField(
