@@ -14,8 +14,42 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'FlashNet',
 
-      home: LoginRealPage(),
+      // ===== AQUI ESTÁ EL CAMBIO =====
+      theme: ThemeData(
 
+        primaryColor: const Color(0xFF1565C0),
+
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Color(0xFF1565C0),
+          foregroundColor: Colors.white,
+        ),
+
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: const Color(0xFF2E7D32),
+            foregroundColor: Colors.white,
+          ),
+        ),
+
+        inputDecorationTheme: const InputDecorationTheme(
+
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: Color(0xFF1565C0),
+              width: 2,
+            ),
+          ),
+
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: Colors.grey,
+            ),
+          ),
+        ),
+      ),
+      // ===== FIN DEL CAMBIO =====
+
+      home: const LoginRealPage(),
     );
   }
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-// ===== IMPORTS CORRECTOS SEGÚN TU CÓDIGO =====
+// IMPORTS DE TUS PANTALLAS
 import '../dashboard/admin_home.dart';
 import '../dashboard/user_home.dart';
 
@@ -16,6 +16,9 @@ class _LoginRealPageState extends State<LoginRealPage> {
   final correoCtrl = TextEditingController();
   final claveCtrl = TextEditingController();
 
+  // 👇 NUEVO
+  String tipoUsuario = "usuario";
+
   void ingresar() {
 
     if (correoCtrl.text.isEmpty || claveCtrl.text.isEmpty) {
@@ -27,10 +30,6 @@ class _LoginRealPageState extends State<LoginRealPage> {
       return;
     }
 
-    bool esAdmin =
-        correoCtrl.text == "admin@flash.com" ||
-            correoCtrl.text == "romulo@test.com";
-
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text("Bienvenido: ${correoCtrl.text}"),
@@ -39,18 +38,18 @@ class _LoginRealPageState extends State<LoginRealPage> {
 
     Future.delayed(const Duration(seconds: 1), () {
 
-      if (esAdmin) {
+      if (tipoUsuario == "admin") {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => AdminHomePage(),   // 👈 AQUÍ ESTÁ LA CORRECCIÓN
+            builder: (context) => const AdminHomePage(),
           ),
         );
       } else {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => UserHomePage(),    // 👈 seguro así se llama
+            builder: (context) => const UserHomePage(),
           ),
         );
       }
@@ -65,6 +64,7 @@ class _LoginRealPageState extends State<LoginRealPage> {
 
       body: Padding(
         padding: const EdgeInsets.all(20),
+
         child: Column(
           children: [
 
@@ -77,6 +77,31 @@ class _LoginRealPageState extends State<LoginRealPage> {
               controller: claveCtrl,
               obscureText: true,
               decoration: const InputDecoration(labelText: "Contraseña"),
+            ),
+
+            const SizedBox(height: 10),
+
+            // 👇 SELECTOR NUEVO
+            DropdownButtonFormField(
+              value: tipoUsuario,
+              decoration: const InputDecoration(
+                labelText: "Tipo de usuario",
+              ),
+              items: const [
+                DropdownMenuItem(
+                  value: "usuario",
+                  child: Text("Usuario"),
+                ),
+                DropdownMenuItem(
+                  value: "admin",
+                  child: Text("Administrador"),
+                ),
+              ],
+              onChanged: (v) {
+                setState(() {
+                  tipoUsuario = v.toString();
+                });
+              },
             ),
 
             const SizedBox(height: 20),

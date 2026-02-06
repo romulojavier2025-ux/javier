@@ -11,20 +11,22 @@ class AdminHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text("Panel Administrador")),
+
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+
             const Icon(Icons.admin_panel_settings, size: 100),
             const SizedBox(height: 20),
 
-            // PRODUCTOS
+            // ===== PRODUCTOS =====
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (_) => const ProductosPage(esAdmin: true),
+                    builder: (_) => const ProductosPage(),   // ✅ CORREGIDO
                   ),
                 );
               },
@@ -33,7 +35,7 @@ class AdminHomePage extends StatelessWidget {
 
             const SizedBox(height: 10),
 
-            // VENTAS
+            // ===== VENTAS =====
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
@@ -48,7 +50,7 @@ class AdminHomePage extends StatelessWidget {
 
             const SizedBox(height: 10),
 
-            // FACTURAS (❌ sin const)
+            // ===== FACTURAS =====
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
@@ -63,7 +65,7 @@ class AdminHomePage extends StatelessWidget {
 
             const SizedBox(height: 10),
 
-            // REGISTRAR USUARIO (❌ sin const)
+            // ===== REGISTRAR USUARIO =====
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.green,
@@ -78,6 +80,7 @@ class AdminHomePage extends StatelessWidget {
               },
               child: const Text("REGISTRAR USUARIO"),
             ),
+
           ],
         ),
       ),

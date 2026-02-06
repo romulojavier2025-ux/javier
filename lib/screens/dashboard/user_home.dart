@@ -9,13 +9,16 @@ class UserHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text("Panel Usuario")),
+
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+
             const Icon(Icons.person, size: 100),
             const SizedBox(height: 20),
 
+            // ===== VENTAS =====
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
@@ -30,18 +33,19 @@ class UserHomePage extends StatelessWidget {
 
             const SizedBox(height: 15),
 
+            // ===== VER INVENTARIO =====
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (_) =>
-                    const ProductosPage(esAdmin: false), // 🔐 USUARIO
+                    builder: (_) => const ProductosPage(),   // ✅ CORREGIDO
                   ),
                 );
               },
               child: const Text("VER INVENTARIO"),
             ),
+
           ],
         ),
       ),
